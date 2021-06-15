@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+#Reusable Commands across all jobs
+commands:
+  git--checkout:
+    steps:
+      - run:
+          name: git-checkout
+          command: |
+            pwd
+            git clone --depth 5 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
+            git checkout "$CIRCLE_BRANCH"
+
+jobs:
+  build-osx:
+    macos:  # indicate that we are using the macOS executor
+      xcode: 12.1.0 # indicate our selected version of Xcode
+    steps: # a series of commands to run
+      - git--checkout
+  
+  build-win:
+    executor:
+      name: win/default # executor type
+      size: "medium" # resource class, can be "medium", "large", "xlarge", "2xlarge", defaults to "medium" if not specified
+      shell: bash.exe
+    steps:
+      - git--checkout
+
+workflows:
+  main_flow:
+    jobs:
+      - build-osx
+      - build-win
