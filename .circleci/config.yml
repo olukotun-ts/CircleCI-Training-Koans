@@ -11,7 +11,7 @@ commands:
           name: git-checkout
           command: |
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-            git clone --depth 5 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
+            git clone --depth 5 "$CIRCLE_REPOSITORY_URL"
             cd "$CIRCLE_PROJECT_REPONAME"
             git checkout "$CIRCLE_BRANCH"
 
