@@ -25,7 +25,8 @@ jobs:
   
   build-win:
     machine:
-      image: windows-server-2019-vs2019:latest
+      image: windows-server-2019-vs2019:stable
+      resource_class: medium
       shell: bash.exe
     steps:
       - checkout
