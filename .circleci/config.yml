@@ -21,13 +21,14 @@ jobs:
       xcode: 12.1.0 # indicate our selected version of Xcode
     steps: # a series of commands to run
       - git--checkout
+      - checkout
   
   build-win:
-    executor:
-      name: win/default # executor type
-      size: "medium" # resource class, can be "medium", "large", "xlarge", "2xlarge", defaults to "medium" if not specified
+    machine:
+      image: windows-server-2019-vs2019:stable
       shell: bash.exe
     steps:
+      - checkout
       - git--checkout
 
 workflows:
