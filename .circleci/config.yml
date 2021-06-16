@@ -11,9 +11,8 @@ commands:
           name: git-checkout
           command: |
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-            git clone "$CIRCLE_REPOSITORY_URL"
+            git clone --depth 5 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
             cd "$CIRCLE_PROJECT_REPONAME"
-            git branch -v
             git checkout "$CIRCLE_BRANCH"
 
 jobs:
@@ -27,6 +26,7 @@ jobs:
     executor:
       name: win/default # executor type
       size: "medium" # resource class, can be "medium", "large", "xlarge", "2xlarge", defaults to "medium" if not specified
+      shell: bash.exe
     steps:
       - git--checkout
 
