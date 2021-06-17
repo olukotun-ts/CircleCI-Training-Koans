@@ -10,7 +10,6 @@ commands:
       - run:
           name: git-checkout
           command: |
-            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
             git clone --depth 5 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
             cd "$CIRCLE_PROJECT_REPONAME"
             git checkout "$CIRCLE_BRANCH"
@@ -21,7 +20,15 @@ jobs:
       xcode: 12.1.0 # indicate our selected version of Xcode
     steps: # a series of commands to run
       - git--checkout
-      - checkout
+      
+  build-osx-keyed:
+    macos:  # indicate that we are using the macOS executor
+      xcode: 12.1.0 # indicate our selected version of Xcode
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b0:58:b4:c6:4b:e1:7a:6f:92:13:f5:dd:f0:5f:9f:8b"
+      - git--checkout
   
   build-win:
     machine:
@@ -29,11 +36,36 @@ jobs:
       resource_class: "windows.medium"
       shell: bash.exe
     steps:
-      - checkout
       - git--checkout
+
+  build-win-keyed-checkout:
+    machine:
+      image: "windows-server-2019-vs2019:stable"
+      resource_class: "windows.medium"
+      shell: bash.exe
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b0:58:b4:c6:4b:e1:7a:6f:92:13:f5:dd:f0:5f:9f:8b"
+      - checkout
+
+  build-win-key+:
+    machine:
+      image: "windows-server-2019-vs2019:stable"
+      resource_class: "windows.medium"
+      shell: bash.exe
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b0:58:b4:c6:4b:e1:7a:6f:92:13:f5:dd:f0:5f:9f:8b"
+      - git--checkout
+
 
 workflows:
   main_flow:
     jobs:
       - build-osx
+      - build-osx-keyed
       - build-win
+      - build-win-keyed
+      - build-win-key+
