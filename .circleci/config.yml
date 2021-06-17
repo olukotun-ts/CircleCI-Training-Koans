@@ -7,66 +7,32 @@ orbs:
 commands:
   git--checkout:
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
+      - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run:
           name: git-checkout
           command: |
             git clone --depth 5 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
             cd "$CIRCLE_PROJECT_REPONAME"
-            git checkout "$CIRCLE_BRANCH"
 
 jobs:
   build-osx:
-    macos:  # indicate that we are using the macOS executor
-      xcode: 12.1.0 # indicate our selected version of Xcode
-    steps: # a series of commands to run
-      - git--checkout
-
-  build-osx-keyed:
-    macos:  # indicate that we are using the macOS executor
-      xcode: 12.1.0 # indicate our selected version of Xcode
+    macos: 
+      xcode: 12.1.0
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
       - git--checkout
   
   build-win:
-    machine:
-      image: "windows-server-2019-vs2019:stable"
-      resource_class: "windows.medium"
+    executor: win/default
+      size: "medium"
       shell: bash.exe
     steps:
       - git--checkout
-
-  build-win-keyed-checkout:
-    machine:
-      image: "windows-server-2019-vs2019:stable"
-      resource_class: "windows.medium"
-      shell: bash.exe
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
-      - checkout
-
-  build-win-keyed:
-    machine:
-      image: "windows-server-2019-vs2019:stable"
-      resource_class: "windows.medium"
-      shell: bash.exe
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
-      - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-      - git--checkout
-
 
 workflows:
   main_flow:
     jobs:
       - build-osx
-      - build-osx-keyed
       - build-win
-      - build-win-keyed
-      - build-win-keyed-checkout
