@@ -27,7 +27,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "b0:58:b4:c6:4b:e1:7a:6f:92:13:f5:dd:f0:5f:9f:8b"
+            - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
       - git--checkout
   
   build-win:
@@ -46,7 +46,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "b0:58:b4:c6:4b:e1:7a:6f:92:13:f5:dd:f0:5f:9f:8b"
+            - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
       - checkout
 
   build-win-keyed:
@@ -57,7 +57,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "b0:58:b4:c6:4b:e1:7a:6f:92:13:f5:dd:f0:5f:9f:8b"
+            - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
       - git--checkout
 
 
