@@ -25,7 +25,8 @@ jobs:
       - git--checkout
   
   build-win:
-    executor: win/default
+    executor:
+      name: win/default
       size: "medium"
       shell: bash.exe
     steps:
