@@ -58,6 +58,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "30:7d:2d:e4:24:a4:15:c8:8f:29:b3:23:33:d6:4b:58"
+      - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - git--checkout
 
 
