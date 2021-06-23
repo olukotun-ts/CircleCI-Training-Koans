@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+  path-filtering: circleci/path-filtering@0.0.2
+  continuation: circleci/continuation@0.2.0
+
+parameters:
+  config-dir:
+    type: string
+
+workflows:
+  set-config-dir:
+    jobs:
+      - path-filtering/filter:
+          mapping: |
+            '00 Challenge Template/.*' 'config-dir' '00 Challenge Template'
+            '01 Hello World/.*' 'config-dir' '01 Hello World'
+          path: .circleci/config.yml
+
+  run-config:
+    jobs:
+      - continuation/continue:
+          configuration_path: << pipeline.parameters.config-dir >>/.circleci/config.yml
