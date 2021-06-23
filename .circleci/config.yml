@@ -9,7 +9,7 @@ orbs:
 parameters:
   config-dir:
     type: string
-    default: '.'
+    default: '01 Hello World'
   filtered:
     type: boolean
     default: false
@@ -18,11 +18,12 @@ workflows:
   set-config-dir:
     jobs:
       - path-filtering/filter:
+          base-revision: master
+          config-path: .circleci/config.yml
           mapping: |
             '.*' 'filtered' 'true'
-            '00 Challenge Template/.*' 'config-dir' '00 Challenge Template'
             '01 Hello World/.*' 'config-dir' '01 Hello World'
-          config-path: .circleci/config.yml
+            '02 Yaml/.*' 'config-dir' '02 Yaml'
 
   run-config:
     when: << pipeline.parameters.filtered >>
