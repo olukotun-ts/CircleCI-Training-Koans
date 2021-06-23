@@ -21,9 +21,9 @@ workflows:
           base-revision: master
           config-path: .circleci/config.yml
           mapping: |
-            '.*' 'filtered' 'true'
-            '01 Hello World/.*' 'config-dir' '01 Hello World'
-            '02 Yaml/.*' 'config-dir' '02 Yaml'
+             .* filtered true
+            01_Hello_World/.* config-dir 01_Hello_World
+            02_Yaml/.* config-dir 02_Yaml
 
   run-config:
     when: << pipeline.parameters.filtered >>
