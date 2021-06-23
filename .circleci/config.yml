@@ -1,32 +1,13 @@
 version: 2.1
 
-setup: true
-
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
-  continuation: circleci/continuation@0.2.0
-
-parameters:
-  config-dir:
-    type: string
-    default: '01 Hello World'
-  filtered:
-    type: boolean
-    default: false
 
 workflows:
   set-config-dir:
     jobs:
       - path-filtering/filter:
           base-revision: master
-          config-path: .circleci/config.yml
           mapping: |
-             .* filtered true
             01_Hello_World/.* config-dir 01_Hello_World
             02_Yaml/.* config-dir 02_Yaml
-
-  run-config:
-    when: << pipeline.parameters.filtered >>
-    jobs:
-      - continuation/continue:
-          configuration_path: << pipeline.parameters.config-dir >>/.circleci/config.yml
