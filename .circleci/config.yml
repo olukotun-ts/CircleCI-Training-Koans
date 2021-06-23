@@ -10,17 +10,22 @@ parameters:
   config-dir:
     type: string
     default: '.'
+  filtered:
+    type: boolean
+    default: false
 
 workflows:
   set-config-dir:
     jobs:
       - path-filtering/filter:
           mapping: |
+            '.*' 'filtered' 'true'
             '00 Challenge Template/.*' 'config-dir' '00 Challenge Template'
             '01 Hello World/.*' 'config-dir' '01 Hello World'
           config-path: .circleci/config.yml
 
   run-config:
+    when: << pipeline.parameters.filtered >>
     jobs:
       - continuation/continue:
           configuration_path: << pipeline.parameters.config-dir >>/.circleci/config.yml
