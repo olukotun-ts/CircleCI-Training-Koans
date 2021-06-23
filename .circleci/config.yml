@@ -16,7 +16,7 @@ workflows:
           mapping: |
             '00 Challenge Template/.*' 'config-dir' '00 Challenge Template'
             '01 Hello World/.*' 'config-dir' '01 Hello World'
-          path: .circleci/config.yml
+          config-path: .circleci/config.yml
 
   run-config:
     jobs:
