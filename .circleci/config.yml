@@ -1,5 +1,7 @@
 version: 2.1
 
+setup: true
+
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
 
@@ -7,7 +9,7 @@ workflows:
   set-config-dir:
     jobs:
       - path-filtering/filter:
-          base-revision: master
+          base-revision: path-filtering
           mapping: |
             01_Hello_World/.* config-dir 01_Hello_World
             02_Yaml/.* config-dir 02_Yaml
