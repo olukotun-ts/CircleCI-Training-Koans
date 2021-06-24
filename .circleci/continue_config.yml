@@ -1,34 +1,21 @@
-version: 2.1
-
-orbs:
-  continuation: circleci/continuation@0.2.0
-
-parameters:
-  run_hello:
-    type: boolean
-    default: false
-  run_yaml:
-    type: boolean
-    default: false
-  run_databases:
-    type: boolean
-    default: false
-  run_parallelism:
-    type: boolean
-    default: false
-  run_orbs:
-    type: boolean
-    default: false
-    
-workflows:
-  get-config:
-    jobs:
-      - get-config
+version: 2
 
 jobs:
-  get-config:
-    executor: continuation/default
+  build:
+    docker: circleci/node
     steps:
-      - run: |
-          echo run_hello: << pipeline.parameters.run_hello >>
-          echo run_yaml: << pipeline.parameters.run_yaml >>
+      - checkout
+      - run
+        name: "'run' statements can actually contain a 'name' and 'command' argument as well"
+        command: | 
+          echo "You can even have multiline commands."
+      - restore_cache:
+          keys:
+          - v1-dependencies-
+      - run: mkdir ~/cache/
+      - run: echo "testfile" > ~/cache/log.txt
+      - save_cache:
+          key: v1-dependencies-
+          paths: ~/cache
+          
+          
