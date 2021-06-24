@@ -6,7 +6,12 @@ orbs:
 workflows:
   filter:
     jobs:
-      - set-config-dir
+      - path-filtering/filter:
+          base-revision: path-filtering
+          config-path: .circleci/config.yml
+          mapping: |
+            01_Hello_World/.* run_hello true
+            02_Yaml/.* run_yaml true
   print:
     when:
       or:
