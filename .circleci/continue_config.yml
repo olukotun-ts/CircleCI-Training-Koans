@@ -6,7 +6,7 @@ orbs:
 parameters:
   run_hello:
     type: boolean
-    default: fasle
+    default: false
   run_yaml:
     type: boolean
     default: false
