@@ -15,11 +15,16 @@ jobs:
     executor: continuation/default
     steps:
       - checkout
-      - run: |
+      - run: 
+          name: Check for changed module
+          command: |
           CHANGE_DIR=$(git diff --dirstat=files,0 HEAD~1 | sed -E 's/^[ 0-9.]+% //g' | sed -E 's/\/.*$//g')
           echo "export CHANGE_DIR=$CHANGE_DIR" >> $BASH_ENV
-      - run: |
+      - run: 
+          name: Generate config
+          command: |
           echo "Target Config: $CHANGE_DIR/.circleci/config.yml"
           cp $CHANGE_DIR/.circleci/config.yml .circleci/continue_config.yml
       - continuation/continue:
           configuration_path: .circleci/continue_config.yml
+          
