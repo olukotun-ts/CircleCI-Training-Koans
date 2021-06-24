@@ -13,4 +13,7 @@ workflows:
           mapping: |
             01_Hello_World/.* run_hello true
             02_Yaml/.* run_yaml true
+            03_Databases/.* run_databases true
+            04_Parallelism/.* run_parallelism true
+            05_Orbs/.* run_orbs true
             

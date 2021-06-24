@@ -10,10 +10,16 @@ parameters:
   run_yaml:
     type: boolean
     default: false
-  config-dir:
-    type: string
-    default: ''
-
+  run_databases:
+    type: boolean
+    default: false
+  run_parallelism:
+    type: boolean
+    default: false
+  run_orbs:
+    type: boolean
+    default: false
+    
 workflows:
   get-config:
     jobs:
@@ -26,4 +32,3 @@ jobs:
       - run: |
           echo run_hello: << pipeline.parameters.run_hello >>
           echo run_yaml: << pipeline.parameters.run_yaml >>
-          echo config-dir: << pipeline.parameters.config-dir >>
