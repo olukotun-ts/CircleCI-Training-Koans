@@ -12,4 +12,4 @@ workflows:
           base-revision: single-config
           mapping: |
             01_Hello_World/.* config_dir 01_Hello_World
-            02_Yaml/.* config_dir 'true'
+            02_Yaml/.* config_dir 02_Yaml
