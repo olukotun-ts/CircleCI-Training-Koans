@@ -10,7 +10,7 @@ parameters:
   run_yaml:
     type: boolean
     default: false
-  config_dir:
+  config-dir:
     type: string
     default: ''
 
@@ -26,4 +26,4 @@ jobs:
       - run: |
           echo run_hello: << pipeline.parameters.run_hello >>
           echo run_yaml: << pipeline.parameters.run_yaml >>
-          echo config_dir: << pipeline.parameters.config_dir >>
+          echo config-dir: << pipeline.parameters.config-dir >>
