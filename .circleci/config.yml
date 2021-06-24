@@ -5,27 +5,11 @@ setup: true
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
 
-parameters:
-  config-dir:
-    type: string
-    default: 'Hello World'
-
 workflows:
   set-config-dir:
     jobs:
       - path-filtering/filter:
           base-revision: path-filtering
-          config-path: .circleci/config.yml
           mapping: |
             01_Hello_World/.* config-dir 01_Hello_World
             02_Yaml/.* config-dir 02_Yaml
-
-  # print:
-  #   when: << pipeline.parameters.config-dir >>
-  #   jobs:
-  #     - print-params
-jobs:
-  print-params:
-    executor: path-filtering/default
-    steps:
-      run: echo << pipeline.parameters.config-dir >>
