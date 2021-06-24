@@ -9,7 +9,7 @@ workflows:
   filter:
     jobs:
       - path-filtering/filter:
-          base-revision: $CIRCLE_BRANCH
+          base-revision: single-config
           mapping: |
             01_Hello_World/.* run_hello true
             02_Yaml/.* run_yaml true
