@@ -18,5 +18,3 @@ jobs:
     executor: continuation/default
     steps:
       - run: echo config-dir << pipeline.parameters.config-dir >>
-      - continuation/continue:
-          configuration_path: << pipeline.parameters.config-dir >>/.circleci/config.yml
