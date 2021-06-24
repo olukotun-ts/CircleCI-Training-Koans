@@ -4,9 +4,12 @@ orbs:
   continuation: circleci/continuation@0.2.0
 
 parameters:
-  config-dir:
-    type: string
-    default: '01 Hello World'
+  run_hello:
+    type: boolean
+    default: fasle
+  run_yaml:
+    type: boolean
+    default: false
 
 workflows:
   get-config:
@@ -17,4 +20,6 @@ jobs:
   get-config:
     executor: continuation/default
     steps:
-      - run: echo config-dir << pipeline.parameters.config-dir >>
+      - run: |
+          echo run_hello: << pipeline.parameters.run_hello >>
+          echo run_yaml: << pipeline.parameters.run_yaml >>
