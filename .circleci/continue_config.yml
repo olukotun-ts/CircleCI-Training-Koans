@@ -12,7 +12,7 @@ parameters:
     default: false
   config_dir:
     type: string
-    default: null
+    default: ''
 
 workflows:
   get-config:
