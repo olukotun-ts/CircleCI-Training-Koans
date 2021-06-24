@@ -1,6 +1,6 @@
 version: 2.1
 
-# setup: true
+setup: true
 
 orbs:
   continuation: circleci/continuation@0.2.0
@@ -20,3 +20,5 @@ jobs:
           echo "export CHANGE_DIR=$CHANGE_DIR" >> $BASH_ENV
       - run: |
           echo "Target Config: $CHANGE_DIR/.circleci/config.yml"
+      - continuation/continue:
+          configuration_path: $CHANGE_DIR/.circleci/config.yml
