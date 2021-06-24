@@ -20,10 +20,10 @@ workflows:
             01_Hello_World/.* config-dir 01_Hello_World
             02_Yaml/.* config-dir 02_Yaml
 
-  print:
-    when: << pipeline.parameters.config-dir >>
-    jobs:
-      - print-params
+  # print:
+  #   when: << pipeline.parameters.config-dir >>
+  #   jobs:
+  #     - print-params
 jobs:
   print-params:
     executor: path-filtering/default
