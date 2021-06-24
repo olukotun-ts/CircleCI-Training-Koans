@@ -1,19 +1,21 @@
 version: 2.1
 
-setup: true
+# setup: true
 
 orbs:
-  path-filtering: circleci/path-filtering@0.0.2
+  continuation: circleci/continuation@0.2.0
 
 workflows:
-  filter:
+  setup:
     jobs:
-      - path-filtering/filter:
-          base-revision: single-config
-          mapping: |
-            01_Hello_World/.* run_hello true
-            02_Yaml/.* run_yaml true
-            03_Databases/.* run_databases true
-            04_Parallelism/.* run_parallelism true
-            05_Orbs/.* run_orbs true
-            
+      - get_config
+    
+jobs:
+  get_config:
+    executor: continuation/default
+    steps:
+      - checkout
+      - run: |
+          CHANGE_DIR=git diff --dirstat=files,0 HEAD~1 | sed -E 's/^[ 0-9.]+% //g' | sed -E 's/\/.*$//g' >> BASH_ENV
+      - run: |
+          echo CHANGE_DIR: $CHANGE_DIR 
