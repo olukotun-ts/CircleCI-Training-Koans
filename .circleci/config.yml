@@ -13,10 +13,10 @@ workflows:
             01_Hello_World/.* run_hello true
             02_Yaml/.* run_yaml true
   print:
-    when:
-      or:
-        - << pipeline.parameters.run_hello >>
-        - << pipeline.parameters.run_yaml >>
+    # when:
+    #   or:
+    #     - << pipeline.parameters.run_hello >>
+    #     - << pipeline.parameters.run_yaml >>
     jobs:
       - get-config-dir
 
