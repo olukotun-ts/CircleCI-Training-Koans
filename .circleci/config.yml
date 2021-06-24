@@ -17,6 +17,6 @@ jobs:
       - checkout
       - run: |
           CHANGE_DIR=$(git diff --dirstat=files,0 HEAD~1 | sed -E 's/^[ 0-9.]+% //g' | sed -E 's/\/.*$//g')
-          echo $CHANGE_DIR >> $BASH_ENV
+          echo 'export CHANGE_DIR=$CHANGE_DIR' >> $BASH_ENV
       - run: |
-          echo CHANGE_DIR: $CHANGE_DIR 
+          echo 'Target Config: $CHANGE_DIR/.circleci/config.yml'
