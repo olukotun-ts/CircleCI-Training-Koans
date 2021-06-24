@@ -10,6 +10,9 @@ parameters:
   run_yaml:
     type: boolean
     default: false
+  config_dir:
+    type: string
+    default: null
 
 workflows:
   get-config:
