@@ -17,6 +17,7 @@ jobs:
       - checkout
       - run: |
           CHANGE_DIR=$(git diff --name-only HEAD~1 | awk -F "/*[^/]*/*$" '{ print ($1 == "" ? "." : $1); }' | sort | uniq)
+          echo CHANGE_DIR: $CHANGE_DIR
           echo $CHANGE_DIR >> BASH_ENV
       - run: |
           echo CHANGE_DIR: $CHANGE_DIR 
