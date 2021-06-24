@@ -13,9 +13,6 @@ parameters:
   config-dir:
     type: string
     default: ''
-  config-dir2:
-    type: string
-    default: ''
 
 workflows:
   get-config:
