@@ -20,5 +20,6 @@ jobs:
           echo "export CHANGE_DIR=$CHANGE_DIR" >> $BASH_ENV
       - run: |
           echo "Target Config: $CHANGE_DIR/.circleci/config.yml"
+          cp $CHANGE_DIR/.circleci/config.yml ./circleci/continue_config.yml
       - continuation/continue:
-          configuration_path: $CHANGE_DIR/.circleci/config.yml
+          configuration_path: .circleci/continue_config.yml
