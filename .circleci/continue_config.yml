@@ -23,3 +23,4 @@ jobs:
       - run: |
           echo run_hello: << pipeline.parameters.run_hello >>
           echo run_yaml: << pipeline.parameters.run_yaml >>
+          echo config_dir: << pipeline.parameters.config_dir >>
