@@ -5,14 +5,6 @@ setup: true
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
 
-# parameters:
-#   run_hello:
-#     type: boolean
-#     default: fasle
-#   run_yaml:
-#     type: boolean
-#     default: false
-
 workflows:
   filter:
     jobs:
@@ -22,25 +14,3 @@ workflows:
           mapping: |
             01_Hello_World/.* run_hello true
             02_Yaml/.* run_yaml true
-#   print:
-#     # when:
-#     #   or:
-#     #     - << pipeline.parameters.run_hello >>
-#     #     - << pipeline.parameters.run_yaml >>
-#     jobs:
-#       - get-config-dir
-
-# jobs:
-#   set-config-dir:
-#     - path-filtering/filter:
-#         base-revision: path-filtering
-#         config-path: .circleci/config.yml
-#         mapping: |
-#           01_Hello_World/.* run_hello true
-#           02_Yaml/.* run_yaml true
-#   get-config-dir:
-#     executor: path-filtering/default
-#     steps:
-#       - run: |
-#           echo run_hello: << pipeline.parameters.run_hello >>
-#           echo run_yaml: << pipeline.parameters.run_yaml >>
