@@ -11,5 +11,5 @@ workflows:
       - path-filtering/filter:
           base-revision: path-filtering
           mapping: |
-            01_Hello_World/.* run_hello true
-            02_Yaml/.* run_yaml true
+            01_Hello_World/.* config_dir "01_Hello_World"
+            02_Yaml/.* config_dir "02_Yaml"
