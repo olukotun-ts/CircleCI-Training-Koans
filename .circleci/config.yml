@@ -20,10 +20,10 @@ workflows:
             01_Hello_World/.* config_dir "01_Hello_World"
             02_Yaml/.* config_dir "02_Yaml"
 
-#   verify:
-#     unless: << pipeline.parameters.config_dir >>
-#     jobs:
-#       - verify
+  verify:
+    unless: << pipeline.parameters.config_dir >>
+    jobs:
+      - verify
 
 jobs:
   verify:
