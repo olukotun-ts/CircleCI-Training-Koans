@@ -18,3 +18,14 @@ workflows:
           mapping: |
             01_Hello_World/.* config_dir "01_Hello_World"
             02_Yaml/.* config_dir "02_Yaml"
+
+  verify:
+    unless: << pipeline.parameters.config_dir >>
+    jobs:
+      - verify
+
+jobs:
+  verify:
+    executor: path-filtering/default
+    steps:
+      - run: echo << pipeline.parameters.config_dir >>
