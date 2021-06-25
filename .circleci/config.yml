@@ -5,6 +5,11 @@ setup: true
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
 
+parameters:
+  config_dir:
+    type: string
+    default: ""
+
 workflows:
   filter:
     jobs:
