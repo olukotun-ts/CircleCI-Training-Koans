@@ -4,6 +4,9 @@ orbs:
   continuation: circleci/continuation@0.2.0
 
 parameters:
+  config_dir:
+    type: string
+    default: ''
   run_hello:
     type: boolean
     default: false
@@ -32,3 +35,4 @@ jobs:
       - run: |
           echo run_hello: << pipeline.parameters.run_hello >>
           echo run_yaml: << pipeline.parameters.run_yaml >>
+          echo config_dir: << pipeline.parameters.config_dir >>
