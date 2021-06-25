@@ -25,8 +25,8 @@ workflows:
 #     jobs:
 #       - verify
 
-# jobs:
-#   verify:
-#     executor: path-filtering/default
-#     steps:
-#       - run: echo << pipeline.parameters.config_dir >>
+jobs:
+  verify:
+    executor: path-filtering/default
+    steps:
+      - run: echo << pipeline.parameters.config_dir >>
