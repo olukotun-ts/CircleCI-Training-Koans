@@ -5,8 +5,8 @@ orbs:
 
 parameters:
   config_dir:
-    type: integer
-    default: 0
+    type: string
+    default: "0"
   run_hello:
     type: boolean
     default: false

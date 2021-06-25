@@ -11,6 +11,6 @@ workflows:
       - path-filtering/filter:
           base-revision: single-config
           mapping: |
-            01_Hello_World/.* config_dir 1
-            02_Yaml/.* config_dir 2
+            01_Hello_World/.* config_dir "1"
+            02_Yaml/.* config_dir "2"
             
